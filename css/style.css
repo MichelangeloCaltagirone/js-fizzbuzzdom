@@ -9,9 +9,11 @@ h1 {
 ul {
     list-style-type: none;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 25px;
     padding-left: 0;
+    
     
     li {        
         height: 75px;
