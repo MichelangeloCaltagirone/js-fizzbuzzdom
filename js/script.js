@@ -1,29 +1,3 @@
-/*
-Consegna:
-MILESTONE 1
-Scrivere un programma che stampi in console i numeri da 1 a 100, ma che
-per i multipli di 3 stampi “Fizz” al posto del numero
-per i multipli di 5 stampi “Buzz” al posto del numero.
-Per i numeri che sono sia multipli di 3 che di 5 stampi “FizzBuzz” al posto del numero.
-Prima di partire a scrivere codice poniamoci qualche domanda:
-
-Come faccio a sapere se un numero è divisibile per un altro?
-Abbiamo visto qualcosa di particolare che possiamo usare?
-MILESTONE 2:
-Creiamo un elemento che faccia da contenitore nel DOM e poi riempiamolo con i degli elementi via JS.
-Possiamo usare varie tecniche  (template literals, innerHTML, appendecc)
-MILESTONE 3:
-Applichiamo stili differenti agli elementi aggiunti al DOM nel BONUS 1, a seconda che il valore inserito sia un numero, un fizz, un buzz o un fizzbuzz.
-Come abbiamo visto ci sono usare varie tecniche (style , className, classList)
-Se siete a corto di idee per lo stile, potreste prendere spunto dallo screenshot fornito in consegna.
-Consigli del giorno:
- Scriviamo sempre prima dei commenti in italiano per capire cosa vogliamo fare
- Proviamo ad immaginare le operazioni che vogliamo far svolgere al nostro programma così come lo faremmo "a mano"
-Non complichiamoci la vita con soluzioni complesse: la strada semplice è quasi sempre la migliore
-
-*/
-
-
 // Milestone 1 
 /*
 Tutto rimane in console. Creo un for che dovrà fare 100 cicli, e utilizzo proprio la variabile di controllo
@@ -31,19 +5,20 @@ per rappresentare i numeri da 1 a 100.
 Dentro al ciclo for, innesto una serie di if per controllare il resto della divisione del numero corrente, così
 da decidere cosa assegnargli, e poi stampo il risultato direttamente in Console.
 */
-
+/*
 for (i = 1; i <= 100; i++) {
     if ((i % 3 == 0) && (i % 5 == 0)) console.log('FizzBuzz');
     else if (i % 5 == 0) console.log('Buzz!');
     else if (i % 3 == 0) console.log('Fizz!');
     else console.log(i);
 }
+*/
 
 
 // Milestone 2
 // Sempre la stessa richiesta, ma invece di stampare in Console, stampo in pagina.
 
-// Metodo .innerHTML. Creo una variabile let fuori dal ciclo for, dentro al ciclo monto la risposta corretta, e solo quando esco dal ciclo
+// Metodo .innerHTML con interpolazione. Creo una variabile let fuori dal ciclo for, dentro al ciclo monto la risposta corretta, e solo quando esco dal ciclo
 // stampo in pagina la risposta nell'elemento del DOM selezionato.
 
 // Fase di preparazione
@@ -51,18 +26,37 @@ for (i = 1; i <= 100; i++) {
 const showRes = document.querySelector('div');
 
 // Setto una variabile da appoggio per montare il risultato senza scrivere ogni volta in pagina
+/*
 let result = ''; 
 
 // Elaboro i dati con i controlli
 for (i = 1; i <= 100; i++) {
-    if ((i % 3 == 0) && (i % 5 == 0)) result += `FizzBuzz!<br>`;
+    if ((i % 3 == 0) && (i % 5 == 0)) result += `FizzBuzz!<br>`;  // ogni volta devo aggiugere un <br> per mandare a capo. In più è tutto una stringa alla fine nel elemento in pagina, scomodo per lavorarci sopra.
     else if (i % 5 == 0) result += `Buzz!<br>`;
     else if (i % 3 == 0) result += `Fizz<br>`;
     else result += `${i}<br>`;
 }
+*/
+
+
+// Soluzione con una lista (per aver direttamente degli elementi su cui poi lavorare col CSS)
+// Preparo variabile da appoggio.
+let listRes = '<ul>'
+
+// Elaboro dati
+for (i = 1; i <= 100; i++) {
+    if ((i % 3 == 0) && (i % 5 == 0)) listRes += `<li class='bg-primary'>FizzBuzz!</li>`; 
+    else if (i % 5 == 0) listRes += `<li class='bg-danger'>Buzz!</li>`;
+    else if (i % 3 == 0) listRes += `<li class='bg-warning'>Fizz!</li>`;
+    else listRes += `<li>${i}</li>`;
+}
+
+// Chiudo la lista solo dopo aver finito il ciclo for.
+listRes += '</ul>'
 
 // Produco output in pagina
-showRes.innerHTML = result;
+showRes.innerHTML = listRes;
 
 
-// Milestone 3
+
+
