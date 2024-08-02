@@ -33,10 +33,36 @@ da decidere cosa assegnargli, e poi stampo il risultato direttamente in Console.
 */
 
 for (i = 1; i <= 100; i++) {
-    if ((i % 3 == 0) && (i % 5 == 0)) {
-        console.log('FizzBuzz');
-    } else if (i % 5 == 0) console.log('Buzz!');
-      else if (i % 3 == 0) console.log('Fizz!');
-      else console.log(i);
+    if ((i % 3 == 0) && (i % 5 == 0)) console.log('FizzBuzz');
+    else if (i % 5 == 0) console.log('Buzz!');
+    else if (i % 3 == 0) console.log('Fizz!');
+    else console.log(i);
 }
 
+
+// Milestone 2
+// Sempre la stessa richiesta, ma invece di stampare in Console, stampo in pagina.
+
+// Metodo .innerHTML. Creo una variabile let fuori dal ciclo for, dentro al ciclo monto la risposta corretta, e solo quando esco dal ciclo
+// stampo in pagina la risposta nell'elemento del DOM selezionato.
+
+// Fase di preparazione
+// Recupero prima gli elementi di interesse dal DOM
+const showRes = document.querySelector('div');
+
+// Setto una variabile da appoggio per montare il risultato senza scrivere ogni volta in pagina
+let result = ''; 
+
+// Elaboro i dati con i controlli
+for (i = 1; i <= 100; i++) {
+    if ((i % 3 == 0) && (i % 5 == 0)) result += `FizzBuzz!<br>`;
+    else if (i % 5 == 0) result += `Buzz!<br>`;
+    else if (i % 3 == 0) result += `Fizz<br>`;
+    else result += `${i}<br>`;
+}
+
+// Produco output in pagina
+showRes.innerHTML = result;
+
+
+// Milestone 3
